@@ -1,7 +1,7 @@
 .banner {
-    background: url("https://lh3.googleusercontent.com/TtQOtrNsoXzRyvSrDwM0P2j2v_4MyzY8QchejMOMEoYCbpBtGrYt_kufrXEJz4P7ZmrUSxwLxQVWvnm7YvUnCoEoB_1DM_42kr66KDeHyQZUNz3kWaY6CAosfJl4GrZmfpDTuRY94vI=w2400") center center;
-   height: 50vh;
-   position: relative; 
+    background: url("https://lh3.googleusercontent.com/34qh69XZlH2DlTIhHhXs2yZEhrZGjynTvd7D_9NH9iWNXR7aQ82AvHCmSkkGdHessqfdKVr1Tf9WBZs9f6C2FcAmXl_6GCThVK1IYIJgucx2li-I5bJbuiVDnPchQQf4B_SDMqC3t5o=w2400") center center;
+    height: 50vh;
+    position: relative; 
 }
 
 .banner_info {
@@ -14,7 +14,31 @@
     width: 300px;
 }
 
+.banner_search {
+    display: flex;
+    flex-direction: column;
+}
+
+.banner_searchButton {
+   background-color: white !important;
+   font-weight: 900 !important;
+   text-transform: inherit !important;
+   color:#ff7779 !important; 
+}
+
 .banner_info > button {
     background-color: #ff7779;
-    color: white
+    color: white;
+    text-transform: inherit;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.banner_info > button:hover {
+    background-color: white;
+    color:#ff7779;
+}
+
+.banner_info > h5 {
+    margin-top: 10 px;
 }
