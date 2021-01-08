@@ -11,7 +11,7 @@ function Home() {
             <div className='home_section'>
                <Card 
                src="https://cdn.thespaces.com/wp-content/uploads/2021/01/FACTORY-BERLIN.jpg"
-               title="Microsoft"
+               title="Facebook"
                description= "Full-stack web developer with a desire to learn"
                phone_number= "202-555-1234"
                />
@@ -23,7 +23,7 @@ function Home() {
                />
                <Card 
                src="https://cdn.thespaces.com/wp-content/uploads/2021/01/Americus-Club-_-Downtown-BEAUTY-SHOPPE.jpg"
-               title="Microsoft"
+               title="Twitter"
                description= "Full-stack web developer with a desire to learn"
                phone_number= "202-555-1234"
                />

@@ -22,7 +22,16 @@ function SearchPage() {
               variant="outlined">More Filters</Button> 
             </div> 
             <SearchResult
-            img=""
+            img="https://lh3.googleusercontent.com/_OxMEv9NvKyr6q4Y3GIzET72bM_WwHk5qe6p49KKD2mX-xzKej04YMl-buAVUkxYXcILsjluA6Frvq-YjAr4jzD8cHo_MeBPZlUUuScVJeP0wb-n-cujgtqe2d2YpAKIAl_lrlBA9qU=w2400"
+            location="Tampa, Fl"
+            title="Web Developer Full-Time"
+            description="Full-Stack"
+            star={4.00}
+            price="$100_000"
+            total="awesome" />  
+
+            <SearchResult
+            img="https://lh3.googleusercontent.com/_OxMEv9NvKyr6q4Y3GIzET72bM_WwHk5qe6p49KKD2mX-xzKej04YMl-buAVUkxYXcILsjluA6Frvq-YjAr4jzD8cHo_MeBPZlUUuScVJeP0wb-n-cujgtqe2d2YpAKIAl_lrlBA9qU=w2400"
             location="Tampa"
             title="Dev"
             description="Full-Stack"
