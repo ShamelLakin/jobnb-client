@@ -56,7 +56,7 @@ class CreateJobListingForm extends Component {
       company_name: "",
     });
   };
-
+  //
   render() {
     return (
       <div className="job_listing_form">
