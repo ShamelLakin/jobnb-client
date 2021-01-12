@@ -8,24 +8,18 @@ import SearchPage from "./SearchPage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CreateCompanyForm from "./CreateCompanyForm";
 import CreateJobListingForm from "./CreateJobListingForm";
-import apiEndPoints from "./utils/config";
+import { connect } from "react-redux";
+import { getAllCompaniesAsync } from "./middleware/companyMiddleware";
+import { getAllJobListingsAsync } from "./middleware/jobListingsMiddleware";
 
 class App extends Component {
-  state = {
-    companies: [],
-  };
-
-  getCompanies = () => {
-    fetch(apiEndPoints.createOrShowAllCompanies())
-      .then((res) => res.json())
-      .then((data) => this.setState({ companies: data.companies.data }));
-  };
-
   componentDidMount() {
-    this.getCompanies();
+    this.props.getAllCompaniesAsync();
+    this.props.getAllJobListingsAsync();
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="app">
         <Router>
@@ -35,10 +29,7 @@ class App extends Component {
             <Route
               path="/create/job_listing"
               render={(routerProps) => (
-                <CreateJobListingForm
-                  {...routerProps}
-                  companies={this.state.companies}
-                />
+                <CreateJobListingForm {...routerProps} />
               )}
             />
             <Route
@@ -62,4 +53,11 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAllCompaniesAsync: () => dispatch(getAllCompaniesAsync()),
+    getAllJobListingsAsync: () => dispatch(getAllJobListingsAsync()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(App);

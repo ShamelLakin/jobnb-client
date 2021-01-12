@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import apiEndPoints from "./utils/config";
+import { connect } from "react-redux";
+import { addNewCompanyAsync } from "./middleware/companyMiddleware";
 
 class CreateCompanyForm extends Component {
   constructor(props) {
@@ -7,7 +8,6 @@ class CreateCompanyForm extends Component {
 
     this.state = {
       name: "",
-      companyId: null
     };
   }
 
@@ -20,22 +20,7 @@ class CreateCompanyForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { createOrShowAllCompanies } = apiEndPoints;
-    const name = this.state.name;
-    const data = {
-      name,
-    };
-
-    fetch(createOrShowAllCompanies(), {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => this.setState({ companyId: data.company.data.id }));
+    this.props.addNewCompanyAsync(this.state.name);
 
     event.target.reset();
     this.setState({ name: "" });
@@ -63,4 +48,10 @@ class CreateCompanyForm extends Component {
   }
 }
 
-export default CreateCompanyForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addNewCompanyAsync: (name) => dispatch(addNewCompanyAsync(name)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CreateCompanyForm);

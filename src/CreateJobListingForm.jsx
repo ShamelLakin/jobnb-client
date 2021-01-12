@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import apiEndPoints from "./utils/config";
+import { connect } from "react-redux";
+import { addNewJobListingAsync } from "./middleware/jobListingsMiddleware";
 
 class CreateJobListingForm extends Component {
   constructor(props) {
@@ -22,31 +23,20 @@ class CreateJobListingForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { createOrShowJobListings } = apiEndPoints;
-    const { title, description, phone_number } = this.state;
-
-    const data = {
-      title,
-      description,
-      phone_number,
-    };
-
     const company = this.props.companies.find(
       (company) =>
         company.attributes.name.toLowerCase() ===
         this.state.company_name.toLowerCase()
     );
 
-    fetch(createOrShowJobListings(+company.id), {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    const { title, description, phone_number } = this.state;
+
+    this.props.addNewJobListingAsync(
+      company.id,
+      title,
+      description,
+      phone_number
+    );
 
     event.target.reset();
     this.setState({
@@ -106,4 +96,22 @@ class CreateJobListingForm extends Component {
   }
 }
 
-export default CreateJobListingForm;
+const mapStateToProps = (state) => {
+  return {
+    companies: state.compRed.companies,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addNewJobListingAsync: (companyId, title, description, phone_number) =>
+      dispatch(
+        addNewJobListingAsync(companyId, title, description, phone_number)
+      ),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateJobListingForm);
