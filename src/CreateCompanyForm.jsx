@@ -7,23 +7,25 @@ class CreateCompanyForm extends Component {
     super(props);
 
     this.state = {
-      name: "",
+      company_name: "",
+      image_url: "",
     };
   }
 
   handleChange = (event) => {
     this.setState({
-      name: event.target.value,
+      [event.target.name]: event.target.value,
     });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.props.addNewCompanyAsync(this.state.name);
+    const { company_name, image_url } = this.state;
+    this.props.addNewCompanyAsync(company_name, image_url);
 
     event.target.reset();
-    this.setState({ name: "" });
+    this.setState({ company_name: "", image_url: "" });
   };
 
   render() {
@@ -39,6 +41,15 @@ class CreateCompanyForm extends Component {
               onChange={this.handleChange}
             />
           </div>
+          <div className="image_field">
+            <input
+              type="text"
+              name="image_url"
+              placeholder="Paste image address"
+              value={this.state.image_url}
+              onChange={this.handleChange}
+            />
+          </div>
           <div className="submit_btn">
             <button type="submit">Create</button>
           </div>
@@ -50,7 +61,8 @@ class CreateCompanyForm extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNewCompanyAsync: (name) => dispatch(addNewCompanyAsync(name)),
+    addNewCompanyAsync: (name, image_url) =>
+      dispatch(addNewCompanyAsync(name, image_url)),
   };
 };
 

@@ -10,14 +10,18 @@ export const getAllCompaniesAsync = () => {
   return (dispatch) => {
     fetch(apiEndPoints.createOrShowAllCompanies())
       .then((response) => response.json())
-      .then((data) => dispatch(getAllCompanies(data.companies.data)));
+      .then((data) => {
+        console.log(data);
+        dispatch(getAllCompanies(data.companies.data));
+      });
   };
 };
 
-export const addNewCompanyAsync = (name) => {
+export const addNewCompanyAsync = (name, image_url) => {
   return (dispatch) => {
     const data = {
       name,
+      image_url,
     };
     fetch(apiEndPoints.createOrShowAllCompanies(), {
       method: "POST",

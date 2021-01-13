@@ -2,14 +2,40 @@ import React from "react";
 import "./Home.css";
 import Banner from "./Banner";
 import Card from "./Card";
+import { connect } from "react-redux";
+import { lighten } from "@material-ui/core";
 
-function Home() {
+function Home({ companies, jobListings }) {
+  {
+    /* find company by company_id (which is in a joblisting) */
+  }
+  const renderCompaniesAndJobListings = () => {
+    return jobListings.map((job) => {
+      const company = companies.find(
+        (company) => company.id == job.attributes.company_id
+      );
+      const { name, image_url } = company.attributes;
+      const { company_name, title, description, phone_number } = job.attributes;
+      return (
+        <Card
+          key={job.id}
+          src={image_url}
+          company={name}
+          jobTitle={title}
+          description={description}
+          phone_number={phone_number}
+        />
+      );
+    });
+  };
+
   return (
     <div className="home">
       <Banner />
 
       <div className="home_section">
-        <Card
+        {renderCompaniesAndJobListings()}
+        {/* <Card
           src="https://cdn.thespaces.com/wp-content/uploads/2021/01/FACTORY-BERLIN.jpg"
           title="Facebook"
           description="Full-stack web developer with a desire to learn"
@@ -44,10 +70,17 @@ function Home() {
           title="Microsoft"
           description="Full-stack web developer with a desire to learn"
           phone_number="202-555-1234"
-        />
+        /> */}
       </div>
     </div>
   );
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    companies: state.compRed.companies,
+    jobListings: state.jlRed.jobListings,
+  };
+};
+
+export default connect(mapStateToProps, null)(Home);
