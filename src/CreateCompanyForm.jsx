@@ -26,6 +26,8 @@ class CreateCompanyForm extends Component {
 
     event.target.reset();
     this.setState({ company_name: "", image_url: "" });
+
+    this.props.history.push("/create/job_listing");
   };
 
   render() {

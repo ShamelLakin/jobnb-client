@@ -12,7 +12,11 @@ export const getAllJobListingsAsync = () => {
   return (dispatch) => {
     fetch(apiEndPoints.allJobListings())
       .then((response) => response.json())
-      .then((data) => dispatch(getAllJobListings(data.job_listings.data)));
+      .then((data) => {
+        const jobs = JSON.stringify(data.job_listings.data)
+        localStorage.setItem("jobs", jobs);
+        dispatch(getAllJobListings(data.job_listings.data));
+      });
   };
 };
 

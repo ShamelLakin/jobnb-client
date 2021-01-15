@@ -37,7 +37,7 @@ function Search() {
              </h2>
              <input min={0} 
              defaultValue={2}
-             type="number" />
+             type="number" /> 
              <Button onClick={()=> history.push('/search')}>Search Jobs</Button>
         </div>
     )

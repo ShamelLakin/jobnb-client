@@ -45,6 +45,8 @@ class CreateJobListingForm extends Component {
       phone_number: "",
       company_name: "",
     });
+
+    this.props.history.push("/");
   };
   //
   render() {

@@ -18,6 +18,10 @@ class App extends Component {
     this.props.getAllJobListingsAsync();
   }
 
+  componentWillUnmount() {
+    localStorage.removeItem("jobs");
+  }
+
   render() {
     console.log(this.props);
     return (

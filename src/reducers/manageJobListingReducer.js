@@ -1,7 +1,7 @@
 //! defining initial state
 const initialState = {
   jobListings: [],
-  filter: [],
+  jobFilter: [],
 };
 
 //! my company reducer below
@@ -17,10 +17,15 @@ export default function manageJobListingReducer(state = initialState, action) {
         ...state,
         jobListings: [...state.jobListings, action.payload.jobListing],
       };
-    case FILTER_JOBS_BY_TITLE:
+    case FILTER_JOBS:
       return {
         ...state,
-        filter: action.payload.filteredJobs,
+        jobListings: action.payload.results,
+      };
+    case RESET_JOB_LISTINGS:
+      return {
+        ...state,
+        jobListings: action.payload.jobListings,
       };
     default:
       return state;
@@ -30,7 +35,8 @@ export default function manageJobListingReducer(state = initialState, action) {
 //! Action Types
 const GET_ALL_JOB_LISTINGS = "GET_ALL_JOB_LISTINGS";
 const ADD_NEW_JOB_LISTING = "ADD_NEW_JOB_LISTING";
-const FILTER_JOBS_BY_TITLE = "FILTER_JOBS_BY_TITLE";
+const FILTER_JOBS = "FILTER_JOBS";
+const RESET_JOB_LISTINGS = "RESET_JOB_LISTINGS";
 
 //! Action Creators
 export const getAllJobListings = (jobListings) => {
@@ -51,11 +57,25 @@ export const addNewJobListing = (jobListing) => {
   };
 };
 
-export const filterJobsByTitle = (filteredJobs) => {
+export const filterJobs = (query, jobsToFilterThrough) => {
+  const results = jobsToFilterThrough.filter((job) => {
+    const jobTitle = job.attributes.title.toLowerCase();
+    query = query.toLowerCase();
+    return jobTitle.includes(query) || jobTitle === query;
+  });
   return {
-    type: FILTER_JOBS_BY_TITLE,
+    type: FILTER_JOBS,
     payload: {
-      filteredJobs,
+      results,
+    },
+  };
+};
+
+export const resetJobListings = (jobListings) => {
+  return {
+    type: RESET_JOB_LISTINGS,
+    payload: {
+      jobListings,
     },
   };
 };
