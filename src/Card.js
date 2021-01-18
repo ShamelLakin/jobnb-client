@@ -1,20 +1,43 @@
 import React from "react";
-import "./Card.css";
+import "./styles/Card.css";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { connect } from "react-redux";
+import { deleteJobListingAsync } from "./middleware/jobListingsMiddleware";
 
-function Card({ src, company, jobTitle, description, phone_number }) {
+function Card({ company, job, deleteJobListingAsync }) {
+  const { title, description, phone_number } = job?.attributes;
+  const handleDelete = () => {
+    deleteJobListingAsync(company?.id, job.id);
+  };
+
   return (
     <div className="card">
       <div className="image_wrapper">
-        <img src={src} alt="" />
+        <img src={company?.attributes.image_url} alt="company logo" />
       </div>
       <div className="card_info">
-        <h2>{company}</h2>
-        <h3>{jobTitle}</h3>
+        <h2>{company?.attributes.name}</h2>
+        <h3>{title}</h3>
         <h4>{description}</h4>
-        <h3>{phone_number}</h3>
+        <div
+          className="phone_and_trash"
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <h3>{phone_number}</h3>
+          <div className="trash" onClick={handleDelete}>
+            <DeleteIcon />
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-export default Card;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteJobListingAsync: (cId, jlId) =>
+      dispatch(deleteJobListingAsync(cId, jlId)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Card);

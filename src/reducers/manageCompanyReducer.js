@@ -40,6 +40,7 @@ const GET_ALL_COMPANIES = "GET_ALL_COMPANIES";
 const ADD_NEW_COMPANY = "ADD_NEW_COMPANY";
 const LOAD_COMPANY_JOB_LISTINGS = "LOAD_COMPANY_JOB_LISTINGS";
 const ADD_NEW_JOB_LISTING_TO_COMPANY = "ADD_NEW_JOB_LISTING_TO_COMPANY";
+// const DELETE_JOB_LISTING = DELETE_JOB_LISTING;
 
 //! Action Creators
 export const getAllCompanies = (companies) => {
@@ -77,3 +78,4 @@ export const addNewJobListingToCompany = (companyJobListing) => {
     },
   };
 };
+

@@ -1,11 +1,7 @@
 import React, { Component } from "react";
-import "./Header.css";
-
-import { Avatar } from "@material-ui/core";
-import LanguageIcon from "@material-ui/icons/Language";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import "./styles/Header.css";
 import { Link } from "react-router-dom";
-import SearchForm from "./SearchForm";
+import SearchForm from "./Search/SearchForm";
 
 class Header extends Component {
   render() {
@@ -25,9 +21,6 @@ class Header extends Component {
 
         <div className="header_right">
           <strong>Become a Tech Star 🚀</strong>
-          {/* <LanguageIcon />
-                  <ExpandMoreIcon />
-                  <Avatar /> */}
         </div>
       </div>
     );

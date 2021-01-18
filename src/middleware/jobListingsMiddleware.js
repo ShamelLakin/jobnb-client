@@ -1,5 +1,6 @@
 import {
   addNewJobListing,
+  deleteJobListing,
   getAllJobListings,
 } from "../reducers/manageJobListingReducer";
 import {
@@ -13,7 +14,7 @@ export const getAllJobListingsAsync = () => {
     fetch(apiEndPoints.allJobListings())
       .then((response) => response.json())
       .then((data) => {
-        const jobs = JSON.stringify(data.job_listings.data)
+        const jobs = JSON.stringify(data.job_listings.data);
         localStorage.setItem("jobs", jobs);
         dispatch(getAllJobListings(data.job_listings.data));
       });
@@ -48,6 +49,20 @@ export const addNewJobListingAsync = (
       .then((data) => {
         dispatch(addNewJobListing(data.job_listing.data)); // add to all job listings array
         dispatch(addNewJobListingToCompany(data.job_listing.data)); // add to specific companies job listings
+      });
+  };
+};
+
+export const deleteJobListingAsync = (companyId, jobListingId) => {
+  return (dispatch, getState) => {
+    fetch(apiEndPoints.updateOrDeleteJobListing(companyId, jobListingId), {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const { jobListings } = getState().jlRed;
+        console.log(data);
+        dispatch(deleteJobListing(jobListings, jobListingId));
       });
   };
 };
