@@ -1,9 +1,9 @@
 # Job.Bnb
-1. Welcome 
+Welcome to Job.Bnb
 
 # Features
 
- 1. Keep track of and search through all job listings.
+ Job.Bnb helps you keep track of all your connections and allows you to search through all of your job listings.
  
 
 ## Technologies Implemented
