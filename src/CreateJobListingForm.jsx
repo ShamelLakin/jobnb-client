@@ -29,13 +29,14 @@ class CreateJobListingForm extends Component {
         this.state.company_name.toLowerCase()
     );
 
-    const { title, description, phone_number } = this.state;
+    const { title, description, phone_number, company_name } = this.state;
 
     this.props.addNewJobListingAsync(
       company.id,
       title,
       description,
-      phone_number
+      phone_number,
+      company_name
     );
 
     event.target.reset();
@@ -58,7 +59,7 @@ class CreateJobListingForm extends Component {
               type="text"
               name="company_name"
               placeholder="Company"
-              value={this.state.company}
+              value={this.state.company_name}
               onChange={this.handleChange}
             />
           </div>
@@ -106,9 +107,21 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNewJobListingAsync: (companyId, title, description, phone_number) =>
+    addNewJobListingAsync: (
+      companyId,
+      title,
+      description,
+      phone_number,
+      company_name
+    ) =>
       dispatch(
-        addNewJobListingAsync(companyId, title, description, phone_number)
+        addNewJobListingAsync(
+          companyId,
+          title,
+          description,
+          phone_number,
+          company_name
+        )
       ),
   };
 };

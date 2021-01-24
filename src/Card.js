@@ -3,11 +3,12 @@ import "./styles/Card.css";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { connect } from "react-redux";
 import { deleteJobListingAsync } from "./middleware/jobListingsMiddleware";
+import Button from "./utils/Button";
 
 function Card({ company, job, deleteJobListingAsync }) {
   const { title, description, phone_number } = job?.attributes;
   const handleDelete = () => {
-    deleteJobListingAsync(company?.id, job.id);
+    deleteJobListingAsync(job.attributes.company_id, job.id);
   };
 
   return (
@@ -16,7 +17,7 @@ function Card({ company, job, deleteJobListingAsync }) {
         <img src={company?.attributes.image_url} alt="company logo" />
       </div>
       <div className="card_info">
-        <h2>{company?.attributes.name}</h2>
+        <h2>{job.attributes.company_name}</h2>
         <h3>{title}</h3>
         <h4>{description}</h4>
         <div
@@ -26,6 +27,9 @@ function Card({ company, job, deleteJobListingAsync }) {
           <h3>{phone_number}</h3>
           <div className="trash" onClick={handleDelete}>
             <DeleteIcon />
+          </div>
+          <div>
+            <Button />
           </div>
         </div>
       </div>

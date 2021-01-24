@@ -25,13 +25,15 @@ export const addNewJobListingAsync = (
   companyId,
   title,
   description,
-  phone_number
+  phone_number,
+  company_name
 ) => {
   return (dispatch, getState) => {
     const data = {
       title,
       description,
       phone_number,
+      company_name,
     };
     const company = getState().compRed.companies.find(
       (company) => company.id == companyId

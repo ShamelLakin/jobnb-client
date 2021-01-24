@@ -20,7 +20,6 @@ class SearchForm extends Component {
     this.handleFilter();
 
     const jobs = JSON.parse(localStorage.getItem("jobs"));
-    // console.log(event.target.value.length, this.state.query.length);
     if (event.target.value.length < this.state.query.length)
       this.props.resetJobListings(jobs);
   };
