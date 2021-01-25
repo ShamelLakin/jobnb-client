@@ -19,3 +19,28 @@ code {
 li {
   list-style-type: none;
 }
+
+div.modal_message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 101;
+  padding: 15px 5px;
+  background-color: #ff7779;
+  color: #fff;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.modal_message a {
+  color: #333;
+  margin-right: 150px;
+}
+
+div.modal_message div.close {
+  cursor: pointer;
+  font-size: 1.2rem;
+}

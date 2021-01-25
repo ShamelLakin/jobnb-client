@@ -2,7 +2,6 @@
 const initialState = {
   jobListings: [],
   jobFilter: [],
-  sortedList: [],
 };
 
 //! my company reducer below
@@ -33,16 +32,6 @@ export default function manageJobListingReducer(state = initialState, action) {
         ...state,
         jobListings: action.payload.updatedJobListings,
       };
-    case SORT_JOBS:
-      return {
-        ...state,
-        sortedList: action.payload.sortedJobListings,
-      };
-    case UNSORT_JOBS:
-      return {
-        ...state,
-        sortedList: [],
-      };
     default:
       return state;
   }
@@ -54,8 +43,6 @@ const ADD_NEW_JOB_LISTING = "ADD_NEW_JOB_LISTING";
 const FILTER_JOBS = "FILTER_JOBS";
 const RESET_JOB_LISTINGS = "RESET_JOB_LISTINGS";
 const DELETE_JOB_LISTING = "DELETE_JOB_LISTING";
-const SORT_JOBS = "SORT_JOBS";
-const UNSORT_JOBS = "UNSORT_JOBS";
 
 //! Action Creators
 export const getAllJobListings = (jobListings) => {
@@ -87,25 +74,6 @@ export const filterJobs = (query, jobsToFilterThrough) => {
     payload: {
       results,
     },
-  };
-};
-
-export const sortJobs = (jobListings) => {
-  jobListings = [...jobListings];
-  const sortedJobListings = jobListings.sort((a, b) =>
-    a.attributes.company_name.localeCompare(b.attributes.company_name)
-  );
-  return {
-    type: SORT_JOBS,
-    payload: {
-      sortedJobListings,
-    },
-  };
-};
-
-export const unsortJobs = () => {
-  return {
-    type: UNSORT_JOBS,
   };
 };
 

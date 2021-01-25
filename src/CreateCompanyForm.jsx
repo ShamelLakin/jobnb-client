@@ -18,16 +18,19 @@ class CreateCompanyForm extends Component {
     });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
     const { company_name, image_url } = this.state;
-    this.props.addNewCompanyAsync(company_name, image_url);
-
-    event.target.reset();
+    const { addNewCompanyAsync } = this.props;
+    const data = await addNewCompanyAsync(company_name, image_url);
+    if (!data) {
+      this.props.handleShowPopup();
+      return;
+    }
     this.setState({ company_name: "", image_url: "" });
-
     this.props.history.push("/create/job_listing");
+    event.target.reset();
   };
 
   render() {

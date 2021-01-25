@@ -18,20 +18,23 @@ export const getAllCompaniesAsync = () => {
 };
 
 export const addNewCompanyAsync = (name, image_url) => {
-  return (dispatch) => {
-    const data = {
+  return async (dispatch) => {
+    const formData = {
       name,
       image_url,
     };
-    fetch(apiEndPoints.createOrShowAllCompanies(), {
+    const response = await fetch(apiEndPoints.createOrShowAllCompanies(), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => dispatch(addNewCompany(data.company.data)));
+      body: JSON.stringify(formData),
+    });
+    const data = await response.json();
+    console.log(data);
+    if (data.error) return;
+    dispatch(addNewCompany(data.company.data));
+    return data;
   };
 };

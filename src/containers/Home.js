@@ -3,34 +3,33 @@ import "../styles/Home.css";
 import Banner from "../Banner";
 import Card from "../Card";
 import { connect } from "react-redux";
-import { sortJobs, unsortJobs } from "../reducers/manageJobListingReducer";
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    // this.state = {
-    //   companies: "",
-    //   jobListings: "",
-    // };
-
-    // This binding is necessary to make `this` work in the callback
-    // this.handleClick = this.handleClick.bind(this);
-  }
+  state = {
+    sortedList: [],
+  };
 
   handleSort = () => {
-    const { jobListings, sortJobs } = this.props;
-    sortJobs(jobListings);
+    const jobListingsCopy = [...this.props.jobListings];
+    const sortedJobListings = jobListingsCopy.sort((a, b) =>
+      a.attributes.company_name.localeCompare(b.attributes.company_name)
+    );
+    this.setState({
+      sortedList: sortedJobListings,
+    });
   };
 
   handleUnsort = () => {
-    const { jobListings, unsortJobs } = this.props;
-    console.log(jobListings);
-    unsortJobs();
+    this.setState({
+      sortedList: [],
+    });
   };
 
   renderCompaniesAndJobListings = () => {
-    const { companies, jobListings, sortedList } = this.props;
+    const { companies, jobListings } = this.props;
+    const { sortedList } = this.state;
     const jobs = sortedList.length > 0 ? sortedList : jobListings;
+
     return jobs.map((job) => {
       const company = companies.find(
         (company) => company.id == job.attributes.company_id
@@ -43,7 +42,7 @@ class Home extends React.Component {
     return (
       <div className="home">
         <Banner />
-        <button onClick={this.handleUnsort}>Original</button>
+        <button onClick={this.handleUnsort}>Back</button>
         <button onClick={this.handleSort}>Click for A-Z</button>
         <div className="home_section">
           {this.renderCompaniesAndJobListings()}
@@ -53,20 +52,13 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    companies: state.compRed.companies,
-    jobListings: state.jlRed.jobListings,
-    jobFilter: state.jlRed.jobFilter,
-    sortedList: state.jlRed.sortedList,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     companies: state.compRed.companies,
+//     jobListings: state.jlRed.jobListings,
+//     jobFilter: state.jlRed.jobFilter,
+//   };
+// };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    sortJobs: (jobListings) => dispatch(sortJobs(jobListings)),
-    unsortJobs: () => dispatch(unsortJobs()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+// export default connect(mapStateToProps, null)(Home);
+export default Home;

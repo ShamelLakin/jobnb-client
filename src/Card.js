@@ -10,7 +10,7 @@ function Card({ company, job, deleteJobListingAsync }) {
   const handleDelete = () => {
     deleteJobListingAsync(job.attributes.company_id, job.id);
   };
-
+  console.log(company);
   return (
     <div className="card">
       <div className="image_wrapper">
