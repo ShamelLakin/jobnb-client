@@ -52,13 +52,13 @@ class Home extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     companies: state.compRed.companies,
-//     jobListings: state.jlRed.jobListings,
-//     jobFilter: state.jlRed.jobFilter,
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    companies: state.compRed.companies,
+    jobListings: state.jlRed.jobListings,
+    jobFilter: state.jlRed.jobFilter,
+  };
+};
 
-// export default connect(mapStateToProps, null)(Home);
-export default Home;
+export default connect(mapStateToProps, null)(Home);
+// export default Home;

@@ -3,3 +3,17 @@
   flex-wrap: wrap;
   padding: 30px;
 }
+
+.home > button {
+  background-color: #ff7779;
+  color: white;
+  text-transform: inherit;
+  font-weight: 600;
+  border-radius: 10px;
+  outline-width: 0;
+}
+
+.home > button:hover {
+  background-color: white;
+  color: #ff7779;
+}

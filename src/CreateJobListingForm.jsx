@@ -28,7 +28,7 @@ class CreateJobListingForm extends Component {
         company.attributes.name.toLowerCase() ===
         this.state.company_name.toLowerCase()
     );
-
+    console.log(company)
     const { title, description, phone_number, company_name } = this.state;
 
     this.props.addNewJobListingAsync(
