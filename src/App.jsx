@@ -18,11 +18,13 @@ class App extends Component {
     jobListings: [],
     companies: [],
     showPopup: false,
+    errorMessage: "",
   };
 
-  handleShowPopup = () => {
+  handleShowPopup = (errorMessage) => {
     this.setState({
       showPopup: true,
+      errorMessage,
     });
   };
 
@@ -75,7 +77,7 @@ class App extends Component {
       <div className="app">
         <Router>
           {this.state.showPopup ? (
-            <PopupMessage handleHidePopup={this.handleHidePopup} />
+            <PopupMessage errorMessage={this.state.errorMessage} handleHidePopup={this.handleHidePopup} />
           ) : null}
           <Header />
           <Switch>

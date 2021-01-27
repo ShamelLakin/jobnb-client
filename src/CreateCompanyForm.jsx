@@ -24,8 +24,8 @@ class CreateCompanyForm extends Component {
     const { company_name, image_url } = this.state;
     const { addNewCompanyAsync } = this.props;
     const data = await addNewCompanyAsync(company_name, image_url);
-    if (!data) {
-      this.props.handleShowPopup();
+    if (data.error) {
+      this.props.handleShowPopup(data.error);
       return;
     }
     this.setState({ company_name: "", image_url: "" });

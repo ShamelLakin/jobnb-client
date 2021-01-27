@@ -6,7 +6,8 @@ class PopupMessage extends Component {
     return (
       <div className="modal_message animate__animated animate__slideInDown animate__faster">
         <p>
-          Company already created.{" "}
+          {this.props.errorMessage}
+        
           <Link to="/create/job_listing" onClick={this.props.handleHidePopup}>
             Create job listing instead?
           </Link>

@@ -33,7 +33,7 @@ export const addNewCompanyAsync = (name, image_url) => {
     });
     const data = await response.json();
     console.log(data);
-    if (data.error) return;
+    if (data.error) return data;
     dispatch(addNewCompany(data.company.data));
     return data;
   };
