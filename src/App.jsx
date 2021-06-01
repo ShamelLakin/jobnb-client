@@ -34,27 +34,27 @@ class App extends Component {
     });
   };
 
-  // getAllCompanies = () => {
-  //   fetch(apiEndPoints.createOrShowAllCompanies())
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       this.setState({
-  //         companies: data.companies.data,
-  //       });
-  //     });
-  // };
+  getAllCompanies = () => {
+    fetch(apiEndPoints.createOrShowAllCompanies())
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          companies: data.companies.data,
+        });
+      });
+  };
 
-  // getAllJobListings = () => {
-  //   fetch(apiEndPoints.allJobListings())
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       const jobs = JSON.stringify(data.job_listings.data);
-  //       localStorage.setItem("jobs", jobs);
-  //       this.setState({
-  //         jobListings: data.job_listings.data,
-  //       });
-  //     });
-  // };
+  getAllJobListings = () => {
+    fetch(apiEndPoints.allJobListings())
+      .then((response) => response.json())
+      .then((data) => {
+        const jobs = JSON.stringify(data.job_listings.data);
+        localStorage.setItem("jobs", jobs);
+        this.setState({
+          jobListings: data.job_listings.data,
+        });
+      });
+  };
 
   getInit = () => {
     this.props.getAllCompaniesAsync();
