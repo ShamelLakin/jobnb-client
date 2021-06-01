@@ -11,7 +11,10 @@ Welcome to Job.Bnb
 1. React.js
 2. Redux to handle state
 3. Rails to handle any backend data/logic
-
+4. Built API with Rails backend to handle database
+5. Utilized React library to build user experience
+6. Used Redux to respond to and modify state change
+7. Made use of async actions, used redux-thunk to send and receive data
 ### Installation
 
 1. git clone [jobnb-client](https://github.com/ShamelLakin/jobnb-client.git)
