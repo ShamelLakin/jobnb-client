@@ -16,7 +16,7 @@ Welcome to Job.Bnb
 6. Used Redux to respond to and modify state change
 7. Made use of async actions, used redux-thunk to send and receive data
 
-Thunks are the recommended middleware for basic Redux side effects logic, including complex synchronous logic that needs access to the store, and simple async logic like AJAX requests.
+
 
 ### Installation
 
